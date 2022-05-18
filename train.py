@@ -158,11 +158,15 @@ def main_worker(cfg):
         logging.info('Val_Loss: {}'.format(val_loss))
         logging.info('Val_NME: {}'.format(val_nme) + '\n')
 
+        print('Train_Loss: {}'.format(train_loss),'Val_Loss: {}'.format(val_loss),'Val_NME: {}'.format(val_nme))
+
         if(epoch in cfg.SAVE_LOG_EPOCH):
             os.system("zip -r checkpoint.zip checkpoint")
             logging.info('checkpoint.zip saved')
+            print("checkpoint.zip saved")
 
     save_checkpoint(cfg, model, extra='final')
+    
 
 
 if __name__ == "__main__":
