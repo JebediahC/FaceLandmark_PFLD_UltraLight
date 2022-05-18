@@ -20,8 +20,8 @@ from pfld.loss import LandmarkLoss
 from test import compute_nme
 
 from models.PFLD import PFLD
-from models.PFLD_Ghost import PFLD_Ghost
-from models.PFLD_Ghost_Slim import PFLD_Ghost_Slim
+from models.PFLD_Ultralight import PFLD_Ultralight
+from models.PFLD_Ultralight_Slim import PFLD_Ultralight_Slim
 
 
 def train(model, train_dataloader, loss_fn, optimizer, cfg):
@@ -98,8 +98,8 @@ def main_worker(cfg):
 
     # ======= MODEL ======= #
     MODEL_DICT = {'PFLD': PFLD,
-                  'PFLD_Ghost': PFLD_Ghost,
-                  'PFLD_Ghost_Slim': PFLD_Ghost_Slim,
+                  'PFLD_Ultralight': PFLD_Ultralight,
+                  'PFLD_Ultralight_Slim': PFLD_Ultralight_Slim,
                   }
     MODEL_TYPE = cfg.MODEL_TYPE
     WIDTH_FACTOR = cfg.WIDTH_FACTOR
@@ -156,6 +156,10 @@ def main_worker(cfg):
         logging.info('Train_Loss: {}'.format(train_loss))
         logging.info('Val_Loss: {}'.format(val_loss))
         logging.info('Val_NME: {}'.format(val_nme) + '\n')
+
+        if(epoch in cfg.SAVE_LOG_EPOCH):
+            os.system("zip -r checkpoint.zip checkpoint")
+            logging.info('checkpoint.zip saved')
 
     save_checkpoint(cfg, model, extra='final')
 
