@@ -13,13 +13,13 @@ def get_config():
     cfg.TRANSFORM = trans.Compose([trans.ToTensor(),
                                    trans.Normalize([0.5, 0.5, 0.5], [0.5, 0.5, 0.5])])
 
-    cfg.MODEL_TYPE = 'PFLD'  # [PFLD, PFLD_Ultralight, PFLD_Ultralight_Slim]
+    cfg.MODEL_TYPE = 'PFLD_Ultralight'  # [PFLD, PFLD_Ultralight, PFLD_Ultralight_Slim]
     cfg.INPUT_SIZE = [112, 112]
-    cfg.WIDTH_FACTOR = 1
+    cfg.WIDTH_FACTOR = 0.25
     cfg.LANDMARK_NUMBER = 98
 
-    cfg.TRAIN_BATCH_SIZE = 256
-    cfg.VAL_BATCH_SIZE = 8
+    cfg.TRAIN_BATCH_SIZE = 512
+    cfg.VAL_BATCH_SIZE = 512
 
     cfg.TRAIN_DATA_PATH = './data/train_data/list.txt'
     cfg.VAL_DATA_PATH = './data/test_data/list.txt'
@@ -29,6 +29,7 @@ def get_config():
     cfg.WEIGHT_DECAY = 1e-6
     cfg.NUM_WORKERS = 8
     cfg.MILESTONES = [90, 140, 170]
+    cfg.SAVE_LOG_EPOCH = [1,2,3,5,10,20,30,40,60,80,100,140,180,200,250,300,350,399]
 
     cfg.RESUME = False
     if cfg.RESUME:

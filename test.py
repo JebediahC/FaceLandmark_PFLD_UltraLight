@@ -13,8 +13,8 @@ import torch.backends.cudnn as cudnn
 from dataset.datasets import WLFWDatasets
 
 from models.PFLD import PFLD
-from models.PFLD_Ghost import PFLD_Ghost
-from models.PFLD_Ghost_Slim import PFLD_Ghost_Slim
+from models.PFLD_Ultralight import PFLD_Ultralight
+from models.PFLD_Ultralight_Slim import PFLD_Ultralight_Slim
 
 cudnn.benchmark = True
 cudnn.determinstic = True
@@ -113,8 +113,8 @@ def validate(model, wlfw_val_dataloader, args):
 
 def main(args):
     MODEL_DICT = {'PFLD': PFLD,
-                  'PFLD_Ghost': PFLD_Ghost,
-                  'PFLD_Ghost_Slim': PFLD_Ghost_Slim,
+                  'PFLD_Ultralight': PFLD_Ultralight,
+                  'PFLD_Ultralight_Slim': PFLD_Ultralight_Slim,
                   }
     MODEL_TYPE = args.model_type
     WIDTH_FACTOR = args.width_factor
@@ -135,12 +135,12 @@ def main(args):
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Testing')
-    parser.add_argument('--model_type', default='PFLD_Ghost', type=str)
+    parser.add_argument('--model_type', default='PFLD_Ultralight', type=str)
     parser.add_argument('--input_size', default=112, type=int)
     parser.add_argument('--width_factor', default=1, type=float)
     parser.add_argument('--landmark_number', default=98, type=int)
     parser.add_argument('--device', default='cuda', type=str)
-    parser.add_argument('--model_path', default="./checkpoint/models/PFLD_Ghost_1_112_2020-08-29-08-49/pfld_ghost_best.pth", type=str)
+    parser.add_argument('--model_path', default="./checkpoint/models/PFLD__1_112_2020-08-29-08-49/pfld__best.pth", type=str)
     parser.add_argument('--test_dataset', default='../../data/face_alignment/test_data/list.txt', type=str)
     parser.add_argument('--show_image', default=True, type=bool)
     args = parser.parse_args()
