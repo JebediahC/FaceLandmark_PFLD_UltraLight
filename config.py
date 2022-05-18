@@ -18,8 +18,8 @@ def get_config():
     cfg.WIDTH_FACTOR = 0.25
     cfg.LANDMARK_NUMBER = 98
 
-    cfg.TRAIN_BATCH_SIZE = 64
-    cfg.VAL_BATCH_SIZE = 64
+    cfg.TRAIN_BATCH_SIZE = 1024
+    cfg.VAL_BATCH_SIZE = 512
 
     cfg.TRAIN_DATA_PATH = './data/train_data/list.txt'
     cfg.VAL_DATA_PATH = './data/test_data/list.txt'

@@ -79,7 +79,7 @@ def main():
     warnings.filterwarnings("ignore")
     set_logger(cfg.LOGGER_PATH)
     write_cfg(logging, cfg)
-    logging.getLogger().setLevel(logging.INFO)
+    # logging.getLogger().setLevel(logging.INFO)
 
     main_worker(cfg)
 
